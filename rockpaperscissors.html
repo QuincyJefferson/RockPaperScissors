@@ -3,6 +3,10 @@
 <head></head>
 <body>
 <script>
+//
+//returns computers play for the round
+//
+
     function computerPlay(){
         const comPlay = Math.floor(Math.random() * 3);
         switch (true){
@@ -18,12 +22,15 @@
         }
     };
 
+//
+//plays a round of the game and returns the winner
+//
+
     function playRound(playerSelection, computerSelection){
-        playerSelection = "Rock";
+        playerSelection = prompt("What is your move?");
         computerSelection = computerPlay();
         playerSelection = playerSelection.toLowerCase();
         computerSelection = computerSelection.toLowerCase();
-        console.log(computerSelection);
 
         if (playerSelection == computerSelection){
             return "Its a tie, go again!";
@@ -36,6 +43,37 @@
         } else {
             return `You lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`
         }
+    };
+
+//   
+//plays the game 5 times and returns the result of each roun/game
+//
+
+    function game(){
+        let result;
+        let playerScore = 0;
+        let comScore = 0;
+        for (i = 0; i < 5; i++){
+            result = playRound();
+            if (result == "You win! Rock beats Scissors" || result == "You win! Paper beats Rock" || result == "You win! Scissors beats Paper"){
+                playerScore++;
+                console.log(result);
+            } else if (result == "Its a tie, go again!"){
+                console.log(result);
+            } else {
+                comScore++;
+                console.log(result);
+            }
+            console.log(`Player score: ${playerScore} Computer score: ${comScore}`);
+        }
+        if (playerScore > comScore){
+            console.log("Player wins the game!");
+        } else if (playerScore == comScore){
+            console.log("The game ends in a tie!");
+        } else {
+            console.log("Computer wins the game!");
+        }
+    
     };
 </script>
 </body>
