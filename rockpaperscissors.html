@@ -4,7 +4,7 @@
 <body>
 <script>
     function computerPlay(){
-        let comPlay = Math.floor(Math.random() * 3);
+        const comPlay = Math.floor(Math.random() * 3);
         switch (true){
             case (comPlay == 0):
                 return "Rock";
@@ -15,6 +15,26 @@
             case (comPlay == 2):
                 return "Scissors";
                 break;
+        }
+    };
+
+    function playRound(playerSelection, computerSelection){
+        playerSelection = "Rock";
+        computerSelection = computerPlay();
+        playerSelection = playerSelection.toLowerCase();
+        computerSelection = computerSelection.toLowerCase();
+        console.log(computerSelection);
+
+        if (playerSelection == computerSelection){
+            return "Its a tie, go again!";
+        } else if (playerSelection == "rock" && computerSelection == "scissors"){
+            return "You win! Rock beats Scissors";
+        } else if (playerSelection == "paper" && computerSelection == "rock"){
+            return "You win! Paper beats Rock";
+        } else if (playerSelection == "scissors" && computerSelection == "paper"){
+            return "You win! Scissors beats Paper";
+        } else {
+            return `You lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`
         }
     };
 </script>
